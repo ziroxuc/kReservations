@@ -222,6 +222,23 @@ docker compose exec frontend npm install
 docker compose restart frontend
 ```
 
+## AI Development Artifacts
+
+This project was developed with AI coding assistant support. All configurations, rules, and usage documentation are available:
+
+### AI Assistant Configuration
+- **[AI_ARTIFACTS.md](./AI_ARTIFACTS.md)** - Complete documentation of AI coding assistant usage
+  - Configuration files (`.claude/settings.local.json`)
+  - Development workflow and best practices
+  - Example transcript from bonus points completion session
+  - Measured benefits and recommendations
+
+### AI Guidance Documents
+- **[backend/CLAUDE.md](./backend/CLAUDE.md)** - AI assistant guidance for backend development
+- **[frontend/CLAUDE.md](./frontend/CLAUDE.md)** - AI assistant guidance for frontend development
+
+These artifacts demonstrate effective AI-augmented development practices and serve as a blueprint for AI-assisted software engineering workflows.
+
 ## Additional Documentation
 
 - [Backend README](./backend/CLAUDE.md)

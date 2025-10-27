@@ -1,11 +1,11 @@
 # Kafè Restaurant Reservation System
 
-Complete restaurant reservation system with NestJS backend, PostgreSQL database and Angular 18 frontend.
+Restaurant reservation system with NestJS backend, PostgreSQL database and Angular 18 frontend.
 
 ## Prerequisites
 
 - Docker and Docker Compose installed
-- Available ports: 3000 (backend), 4200 (frontend), 5432 (PostgreSQL)
+- Available ports: 3000 (backend), 80 (frontend), 5432 (PostgreSQL)
 
 ## Quick Start
 
@@ -120,7 +120,7 @@ docker compose exec frontend npm test
   - Starts the server in development mode
 
 ### Frontend (Angular)
-- **Port**: 4200
+- **Port**: 80
 - **Hot-reload**: Enabled with ng serve and polling (every 2 seconds)
 - **Dependencies**: Backend
 - **Build**: Uses Dockerfile.dev in development, Dockerfile in production
@@ -163,7 +163,7 @@ The project has different Dockerfiles depending on the environment:
 - `Dockerfile.dev` - For development (used in docker-compose.yml)
   - Uses `ng serve` with hot-reload
   - Angular CLI pre-installed
-  - Port 4200 exposed
+  - Port 80 exposed
 
 - `Dockerfile` - For production
   - Multi-stage build

@@ -1,0 +1,26 @@
+<div class="alternatives-container">
+  <h3>Available Alternatives:</h3>
+  <p class="subtitle">Your selected slot is unavailable. Here are some alternatives:</p>
+
+  <div class="alternatives-list">
+    @for (alt of alternatives; track alt.date + alt.timeSlot + alt.region) {
+      @if (alt.available) {
+        <div
+          class="alternative-card"
+          (click)="onSelectAlternative(alt)"
+        >
+          <div class="alt-date">
+            {{ alt.date }}
+          </div>
+          <div class="alt-time">
+            {{ alt.timeSlot }}
+          </div>
+          <div class="alt-region">
+            {{ getRegionDisplayName(alt.region) }}
+          </div>
+          <button class="btn-small">Select</button>
+        </div>
+      }
+    }
+  </div>
+</div>

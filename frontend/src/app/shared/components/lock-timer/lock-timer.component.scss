@@ -1,0 +1,52 @@
+@import '../../../../styles/variables';
+
+.lock-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  background: lighten($secondary-color, 45%);
+  border: 2px solid $secondary-color;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-lg;
+  transition: all $transition-base;
+
+  .icon {
+    font-size: 1.25rem;
+  }
+
+  .text {
+    font-size: $font-size-base;
+    color: $text-color;
+
+    strong {
+      font-size: $font-size-lg;
+      color: $secondary-color;
+    }
+  }
+
+  .warning-text {
+    font-weight: 600;
+    color: $warning-color;
+    animation: pulse 1s infinite;
+  }
+
+  &.warning {
+    background: lighten($warning-color, 40%);
+    border-color: $warning-color;
+
+    .text strong {
+      color: $warning-color;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

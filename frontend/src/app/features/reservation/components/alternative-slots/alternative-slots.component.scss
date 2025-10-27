@@ -1,0 +1,68 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.alternatives-container {
+  margin-top: $spacing-xl;
+  padding: $spacing-lg;
+  background: lighten($warning-color, 45%);
+  border: 1px solid $warning-color;
+  border-radius: $radius-md;
+
+  h3 {
+    color: $text-color;
+    margin-bottom: $spacing-sm;
+  }
+
+  .subtitle {
+    color: $text-light;
+    margin-bottom: $spacing-lg;
+    font-size: $font-size-sm;
+  }
+}
+
+.alternatives-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: $spacing-md;
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.alternative-card {
+  @include card;
+  cursor: pointer;
+  transition: all $transition-base;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+
+  .alt-date {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $text-color;
+  }
+
+  .alt-time {
+    font-size: $font-size-base;
+    color: $secondary-color;
+    font-weight: 500;
+  }
+
+  .alt-region {
+    font-size: $font-size-sm;
+    color: $text-light;
+  }
+
+  button {
+    margin-top: $spacing-sm;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+    border-color: $secondary-color;
+  }
+}

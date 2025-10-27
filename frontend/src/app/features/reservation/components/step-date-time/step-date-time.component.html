@@ -1,0 +1,58 @@
+<div class="step-container">
+  <h2>Select Date & Time</h2>
+
+  @if (isLoading()) {
+    <app-loader />
+  }
+
+  @if (error()) {
+    <app-error-message [message]="error()!" />
+  }
+
+  <div class="date-picker">
+    <label for="reservation-date">Select Date:</label>
+    <input
+      id="reservation-date"
+      type="date"
+      class="form-input"
+      [min]="minDate"
+      [max]="maxDate"
+      [value]="selectedDate() || ''"
+      (change)="onDateChange($event)"
+    />
+  </div>
+
+  @if (selectedDate()) {
+    <div class="time-slots">
+      <h3>Available Times:</h3>
+      <div class="slots-grid">
+        @for (slot of availableSlots(); track slot.timeSlot) {
+          <button
+            class="time-slot-btn"
+            [class.selected]="selectedTimeSlot() === slot.timeSlot"
+            [disabled]="slot.availableRegions.length === 0"
+            (click)="selectTimeSlot(slot.timeSlot)"
+          >
+            <span class="time">{{ slot.timeSlot }}</span>
+            @if (slot.availableRegions.length === 0) {
+              <span class="badge unavailable">Full</span>
+            }
+            @if (slot.availableRegions.length > 0) {
+              <span class="badge available">{{ slot.availableRegions.length }} regions</span>
+            }
+          </button>
+        }
+      </div>
+    </div>
+  }
+
+  <div class="actions">
+    <button
+      class="btn-primary"
+      [disabled]="!canProceed()"
+      (click)="onNext()"
+    >
+      Next Step →
+    </button>
+  </div>
+</div>

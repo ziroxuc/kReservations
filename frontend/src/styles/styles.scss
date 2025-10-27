@@ -1,0 +1,137 @@
+@import 'variables';
+@import 'mixins';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  color: $text-color;
+  background: $background-color;
+  line-height: 1.6;
+}
+
+// Buttons
+.btn-primary {
+  @include button-base;
+  background: $primary-color;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background: darken($primary-color, 10%);
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.btn-secondary {
+  @include button-base;
+  background: transparent;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+
+  &:hover:not(:disabled) {
+    background: $primary-color;
+    color: white;
+  }
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: $secondary-color;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  text-decoration: underline;
+  padding: 0;
+
+  &:hover {
+    color: darken($secondary-color, 10%);
+  }
+}
+
+.btn-large {
+  padding: $spacing-md $spacing-xl;
+  font-size: $font-size-lg;
+}
+
+.btn-small {
+  padding: $spacing-xs $spacing-sm;
+  font-size: $font-size-sm;
+}
+
+// Form inputs
+.form-input {
+  width: 100%;
+  padding: $spacing-sm;
+  border: 2px solid $border-color;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  transition: border-color $transition-base;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-color;
+  }
+
+  &.error {
+    border-color: $error-color;
+  }
+}
+
+.form-group {
+  margin-bottom: $spacing-lg;
+
+  label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-weight: 600;
+    color: $text-color;
+  }
+}
+
+.error-text {
+  color: $error-color;
+  font-size: $font-size-sm;
+  margin-top: $spacing-xs;
+  display: block;
+}
+
+// Alerts
+.alert {
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-lg;
+
+  &.alert-success {
+    background: lighten($success-color, 40%);
+    border: 1px solid $success-color;
+    color: darken($success-color, 20%);
+  }
+
+  &.alert-error {
+    background: lighten($error-color, 40%);
+    border: 1px solid $error-color;
+    color: darken($error-color, 20%);
+  }
+
+  &.alert-info {
+    background: lighten($secondary-color, 40%);
+    border: 1px solid $secondary-color;
+    color: darken($secondary-color, 20%);
+  }
+}
+
+// Utility classes
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.mt-1 { margin-top: $spacing-sm; }
+.mt-2 { margin-top: $spacing-md; }
+.mt-3 { margin-top: $spacing-lg; }
+.mb-1 { margin-bottom: $spacing-sm; }
+.mb-2 { margin-bottom: $spacing-md; }
+.mb-3 { margin-bottom: $spacing-lg; }

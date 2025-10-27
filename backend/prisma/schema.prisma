@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Region {
+  id                String        @id @default(uuid())
+  name              String        @unique @db.VarChar(50)
+  displayName       String        @db.VarChar(100)
+  capacity          Int
+  tables            Int
+  allowChildren     Boolean       @default(false)
+  allowSmoking      Boolean       @default(false)
+  isActive          Boolean       @default(true)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  reservations      Reservation[]
+
+  @@map("regions")
+}
+
+model Reservation {
+  id                String            @id @default(uuid())
+  date              DateTime          @db.Date
+  timeSlot          String            @db.VarChar(5)
+  customerName      String            @db.VarChar(255)
+  email             String            @db.VarChar(255)
+  phone             String            @db.VarChar(50)
+  partySize         Int
+  regionId          String
+  region            Region            @relation(fields: [regionId], references: [id])
+  childrenCount     Int               @default(0)
+  hasSmokingRequest Boolean           @default(false)
+  hasBirthday       Boolean           @default(false)
+  birthdayName      String?           @db.VarChar(255)
+  status            ReservationStatus @default(LOCKED)
+  lockedUntil       DateTime?
+  lockedBy          String?           @db.VarChar(255)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@index([date, timeSlot, regionId])
+  @@index([status, lockedUntil])
+  @@index([lockedBy])
+  @@map("reservations")
+}
+
+enum ReservationStatus {
+  LOCKED
+  CONFIRMED
+  CANCELLED
+}

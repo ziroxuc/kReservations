@@ -1,0 +1,9 @@
+# Cypress artifacts
+screenshots/
+videos/
+downloads/
+
+# IDE
+.DS_Store
+.vscode/
+.idea/

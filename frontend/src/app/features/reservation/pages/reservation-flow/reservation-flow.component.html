@@ -1,0 +1,23 @@
+<div class="reservation-flow-container">
+  <header class="flow-header">
+    <h1>Reserve Your Table at Kafè</h1>
+    <app-progress-indicator />
+  </header>
+
+  <main class="flow-content">
+    @switch (stateService.currentStep()) {
+      @case (1) {
+        <app-step-date-time />
+      }
+      @case (2) {
+        <app-step-guest-info />
+      }
+      @case (3) {
+        <app-step-party-details />
+      }
+      @case (4) {
+        <app-step-preferences />
+      }
+    }
+  </main>
+</div>

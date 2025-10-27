@@ -1,0 +1,50 @@
+[
+  {
+    "id": "region-main-hall",
+    "name": "MAIN_HALL",
+    "displayName": "Main Hall",
+    "capacity": 12,
+    "tables": 2,
+    "allowChildren": true,
+    "allowSmoking": false,
+    "isActive": true,
+    "createdAt": "2025-07-01T00:00:00.000Z",
+    "updatedAt": "2025-07-01T00:00:00.000Z"
+  },
+  {
+    "id": "region-bar",
+    "name": "BAR",
+    "displayName": "Bar",
+    "capacity": 4,
+    "tables": 4,
+    "allowChildren": false,
+    "allowSmoking": false,
+    "isActive": true,
+    "createdAt": "2025-07-01T00:00:00.000Z",
+    "updatedAt": "2025-07-01T00:00:00.000Z"
+  },
+  {
+    "id": "region-riverside",
+    "name": "RIVERSIDE",
+    "displayName": "Riverside",
+    "capacity": 8,
+    "tables": 3,
+    "allowChildren": true,
+    "allowSmoking": false,
+    "isActive": true,
+    "createdAt": "2025-07-01T00:00:00.000Z",
+    "updatedAt": "2025-07-01T00:00:00.000Z"
+  },
+  {
+    "id": "region-riverside-smoking",
+    "name": "RIVERSIDE_SMOKING",
+    "displayName": "Riverside (Smoking)",
+    "capacity": 6,
+    "tables": 5,
+    "allowChildren": false,
+    "allowSmoking": true,
+    "isActive": true,
+    "createdAt": "2025-07-01T00:00:00.000Z",
+    "updatedAt": "2025-07-01T00:00:00.000Z"
+  }
+]

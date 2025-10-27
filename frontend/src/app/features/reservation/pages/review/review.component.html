@@ -1,0 +1,84 @@
+<div class="review-container">
+  <h1>Review Your Reservation</h1>
+
+  <app-lock-timer />
+
+  @if (error()) {
+    <app-error-message [message]="error()!" />
+  }
+
+  <div class="review-sections">
+    <div class="review-section">
+      <div class="section-header">
+        <h3>Date & Time</h3>
+        <button class="btn-link" (click)="editStep(1)">Edit</button>
+      </div>
+      <div class="section-content">
+        <p><strong>Date:</strong> {{ reservationData().date }}</p>
+        <p><strong>Time:</strong> {{ reservationData().timeSlot }}</p>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <div class="section-header">
+        <h3>Guest Information</h3>
+        <button class="btn-link" (click)="editStep(2)">Edit</button>
+      </div>
+      <div class="section-content">
+        <p><strong>Name:</strong> {{ reservationData().customerName }}</p>
+        <p><strong>Email:</strong> {{ reservationData().email }}</p>
+        <p><strong>Phone:</strong> {{ reservationData().phone }}</p>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <div class="section-header">
+        <h3>Party Details</h3>
+        <button class="btn-link" (click)="editStep(3)">Edit</button>
+      </div>
+      <div class="section-content">
+        <p><strong>Party Size:</strong> {{ reservationData().partySize }} people</p>
+        <p><strong>Children:</strong> {{ reservationData().childrenCount }}</p>
+        @if (reservationData().hasBirthday) {
+          <p><strong>Birthday Celebration:</strong> Yes</p>
+          @if (reservationData().birthdayName) {
+            <p><strong>Birthday Person:</strong> {{ reservationData().birthdayName }}</p>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="review-section">
+      <div class="section-header">
+        <h3>Preferences</h3>
+        <button class="btn-link" (click)="editStep(4)">Edit</button>
+      </div>
+      <div class="section-content">
+        <p><strong>Region:</strong> {{ getRegionDisplayName(reservationData().region!) }}</p>
+        <p><strong>Smoking:</strong> {{ reservationData().hasSmokingRequest ? 'Yes' : 'No' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button
+      class="btn-secondary"
+      (click)="cancelReservation()"
+      [disabled]="isLoading()"
+    >
+      Cancel
+    </button>
+    <button
+      class="btn-primary btn-large"
+      (click)="confirmReservation()"
+      [disabled]="isLoading()"
+    >
+      @if (isLoading()) {
+        <app-loader [small]="true" [inline]="true" />
+        <span>Confirming...</span>
+      } @else {
+        <span>Confirm Reservation</span>
+      }
+    </button>
+  </div>
+</div>

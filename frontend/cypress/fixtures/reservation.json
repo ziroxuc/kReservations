@@ -1,0 +1,52 @@
+{
+  "validReservation": {
+    "date": "2025-07-24",
+    "timeSlot": "19:00",
+    "customerName": "John Doe",
+    "email": "john.doe@example.com",
+    "phone": "+1234567890",
+    "partySize": 4,
+    "childrenCount": 0,
+    "hasBirthday": false,
+    "birthdayName": null,
+    "hasSmokingRequest": true,
+    "region": "Riverside Smoking"
+  },
+  "noChildrenReservation": {
+    "date": "2025-07-25",
+    "timeSlot": "20:00",
+    "customerName": "Alice Smith",
+    "email": "alice@example.com",
+    "phone": "+9876543210",
+    "partySize": 2,
+    "childrenCount": 0,
+    "hasBirthday": false,
+    "hasSmokingRequest": false,
+    "region": "Bar"
+  },
+  "smokingReservation": {
+    "date": "2025-07-26",
+    "timeSlot": "18:30",
+    "customerName": "Bob Johnson",
+    "email": "bob@example.com",
+    "phone": "+1122334455",
+    "partySize": 3,
+    "childrenCount": 0,
+    "hasBirthday": false,
+    "hasSmokingRequest": true,
+    "region": "Riverside Smoking"
+  },
+  "largeParty": {
+    "date": "2025-07-27",
+    "timeSlot": "19:30",
+    "customerName": "Carol White",
+    "email": "carol@example.com",
+    "phone": "+5566778899",
+    "partySize": 10,
+    "childrenCount": 3,
+    "hasBirthday": true,
+    "birthdayName": "Little Carol",
+    "hasSmokingRequest": false,
+    "region": "Main Hall"
+  }
+}

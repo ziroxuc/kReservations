@@ -1,0 +1,21 @@
+<div class="progress-indicator">
+  @for (step of steps; track step.number) {
+    <div
+      class="step"
+      [class.active]="currentStep() === step.number"
+      [class.completed]="currentStep() > step.number"
+    >
+      <div class="step-circle">
+        @if (currentStep() > step.number) {
+          <span class="checkmark">✓</span>
+        } @else {
+          <span class="number">{{ step.number }}</span>
+        }
+      </div>
+      <div class="step-label">{{ step.label }}</div>
+    </div>
+    @if (step.number < steps.length) {
+      <div class="connector" [class.completed]="currentStep() > step.number"></div>
+    }
+  }
+</div>

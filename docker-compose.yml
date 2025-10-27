@@ -1,0 +1,62 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: kafe-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kafe_db
+      POSTGRES_USER: kafe_user
+      POSTGRES_PASSWORD: kafe_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kafe_user -d kafe_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - kafe-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: production
+    container_name: kafe-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://kafe_user:kafe_pass@postgres:5432/kafe_db?schema=public
+      NODE_ENV: production
+      PORT: 3000
+      LOCK_DURATION_MINUTES: 5
+      CORS_ORIGIN: http://localhost:4200,http://localhost
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - kafe-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: kafe-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - kafe-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  kafe-network:
+    driver: bridge

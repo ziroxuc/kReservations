@@ -1,0 +1,7 @@
+<div class="error-message">
+  <span class="icon">⚠️</span>
+  <span class="text">{{ message }}</span>
+  @if (dismissible) {
+    <button class="dismiss-btn" (click)="onDismiss()">×</button>
+  }
+</div>

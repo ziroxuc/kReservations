@@ -1,0 +1,77 @@
+<div class="step-container">
+  <h2>Select Region & Preferences</h2>
+
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label>Would anyone like to smoke?</label>
+      <div class="checkbox-wrapper">
+        <input
+          type="checkbox"
+          id="smoking"
+          formControlName="hasSmokingRequest"
+        />
+        <label for="smoking">Yes, smoking section preferred</label>
+      </div>
+      @if (form.get('hasSmokingRequest')?.value) {
+        <p class="info-text">
+          Only RIVERSIDE (Smoking) will be available
+        </p>
+      }
+    </div>
+
+    <div class="form-group">
+      <app-region-selector
+        [selectedRegionId]="form.get('region')?.value"
+        [partySize]="stateService.reservationData().partySize || 0"
+        [childrenCount]="stateService.reservationData().childrenCount || 0"
+        [hasSmokingRequest]="form.get('hasSmokingRequest')?.value"
+        (regionSelected)="form.patchValue({ region: $event })"
+      />
+      @if (form.get('region')?.touched && form.get('region')?.invalid) {
+        <span class="error-text">Please select a region</span>
+      }
+    </div>
+
+    @if (isChecking()) {
+      <div class="checking-status">
+        <app-loader [small]="true" />
+        <span>Checking availability...</span>
+      </div>
+    }
+
+    @if (availabilityResult()) {
+      @if (availabilityResult()!.available) {
+        <div class="alert alert-success">
+          ✓ This slot is available!
+        </div>
+      } @else {
+        <div class="alert alert-error">
+          ✗ {{ availabilityResult()!.reason }}
+        </div>
+      }
+    }
+
+    @if (alternatives().length > 0 && !availabilityResult()?.available) {
+      <app-alternative-slots
+        [alternatives]="alternatives()"
+        (selectAlternative)="onSelectAlternative($event)"
+      />
+    }
+  </form>
+
+  <div class="actions">
+    <button
+      class="btn-secondary"
+      (click)="onBack()"
+    >
+      ← Back
+    </button>
+    <button
+      class="btn-primary"
+      [disabled]="!form.valid || !availabilityResult()?.available"
+      (click)="onLockAndProceed()"
+    >
+      Lock & Continue →
+    </button>
+  </div>
+</div>

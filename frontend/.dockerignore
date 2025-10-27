@@ -1,0 +1,13 @@
+node_modules
+dist
+.angular
+.git
+.gitignore
+*.md
+npm-debug.log
+.DS_Store
+coverage
+.nyc_output
+.vscode
+.idea
+*.log

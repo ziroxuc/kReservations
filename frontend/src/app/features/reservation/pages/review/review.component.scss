@@ -1,0 +1,67 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.review-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+
+  h1 {
+    text-align: center;
+    margin-bottom: $spacing-lg;
+    color: $text-color;
+  }
+}
+
+.review-sections {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+}
+
+.review-section {
+  @include card;
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-sm;
+    border-bottom: 1px solid $border-color;
+
+    h3 {
+      margin: 0;
+      color: $text-color;
+    }
+  }
+
+  .section-content {
+    p {
+      margin: $spacing-sm 0;
+      color: $text-color;
+
+      strong {
+        color: $text-light;
+        font-weight: 500;
+        margin-right: $spacing-xs;
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

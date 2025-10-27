@@ -1,0 +1,29 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.step-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+
+  h2 {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    color: $text-color;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

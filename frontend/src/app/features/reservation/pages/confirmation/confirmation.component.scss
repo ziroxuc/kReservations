@@ -1,0 +1,96 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.confirmation-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $spacing-xl;
+  text-align: center;
+
+  .success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto $spacing-lg;
+    background: $success-color;
+    color: white;
+    border-radius: 50%;
+    @include flex-center;
+    font-size: 3rem;
+    font-weight: bold;
+    animation: scaleIn 0.5s ease;
+  }
+
+  h1 {
+    color: $text-color;
+    margin-bottom: $spacing-sm;
+  }
+
+  .subtitle {
+    color: $text-light;
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.confirmation-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  text-align: left;
+}
+
+.detail-card {
+  @include card;
+
+  h3 {
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-sm;
+    border-bottom: 1px solid $border-color;
+    color: $text-color;
+  }
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: $spacing-sm 0;
+
+  .label {
+    color: $text-light;
+    font-size: $font-size-sm;
+  }
+
+  .value {
+    color: $text-color;
+    font-weight: 500;
+    text-align: right;
+  }
+}
+
+.confirmation-message {
+  @include card;
+  background: lighten($success-color, 45%);
+  border: 1px solid $success-color;
+  margin-bottom: $spacing-xl;
+
+  p {
+    margin: $spacing-sm 0;
+    color: $text-color;
+
+    strong {
+      color: darken($success-color, 10%);
+    }
+  }
+}

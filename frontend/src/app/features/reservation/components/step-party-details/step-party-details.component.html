@@ -1,0 +1,98 @@
+<div class="step-container">
+  <h2>Party Details</h2>
+
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="partySize">Party Size * (Max 12 people)</label>
+      <input
+        id="partySize"
+        type="number"
+        class="form-input"
+        formControlName="partySize"
+        min="1"
+        max="12"
+        [class.error]="partySizeControl.invalid && partySizeControl.touched"
+      />
+      @if (partySizeControl.invalid && partySizeControl.touched) {
+        @if (partySizeControl.hasError('required')) {
+          <span class="error-text">Party size is required</span>
+        }
+        @if (partySizeControl.hasError('min')) {
+          <span class="error-text">Minimum party size is 1</span>
+        }
+        @if (partySizeControl.hasError('max')) {
+          <span class="error-text">Maximum party size is 12</span>
+        }
+      }
+      <p class="info-text">Number of guests (including children)</p>
+    </div>
+
+    <div class="form-group">
+      <label for="childrenCount">Number of Children *</label>
+      <input
+        id="childrenCount"
+        type="number"
+        class="form-input"
+        formControlName="childrenCount"
+        min="0"
+        [class.error]="childrenCountControl.invalid && childrenCountControl.touched"
+      />
+      @if (childrenCountControl.invalid && childrenCountControl.touched) {
+        @if (childrenCountControl.hasError('required')) {
+          <span class="error-text">Please specify number of children (0 if none)</span>
+        }
+        @if (childrenCountControl.hasError('min')) {
+          <span class="error-text">Cannot be negative</span>
+        }
+        @if (childrenCountControl.hasError('exceedsPartySize')) {
+          <span class="error-text">Children count cannot exceed party size</span>
+        }
+      }
+      <p class="info-text">Number of guests under 12 years old</p>
+    </div>
+
+    <div class="form-group">
+      <div class="checkbox-wrapper">
+        <input
+          type="checkbox"
+          id="hasBirthday"
+          formControlName="hasBirthday"
+        />
+        <label for="hasBirthday">This is a birthday celebration</label>
+      </div>
+    </div>
+
+    @if (showBirthdayName()) {
+      <div class="form-group birthday-name">
+        <label for="birthdayName">Birthday Person's Name *</label>
+        <input
+          id="birthdayName"
+          type="text"
+          class="form-input"
+          formControlName="birthdayName"
+          placeholder="Enter the birthday person's name"
+          [class.error]="birthdayNameControl.invalid && birthdayNameControl.touched"
+        />
+        @if (birthdayNameControl.invalid && birthdayNameControl.touched) {
+          <span class="error-text">Birthday person's name is required</span>
+        }
+      </div>
+    }
+  </form>
+
+  <div class="actions">
+    <button
+      class="btn-secondary"
+      (click)="onBack()"
+    >
+      ← Back
+    </button>
+    <button
+      class="btn-primary"
+      [disabled]="!form.valid"
+      (click)="onNext()"
+    >
+      Next Step →
+    </button>
+  </div>
+</div>

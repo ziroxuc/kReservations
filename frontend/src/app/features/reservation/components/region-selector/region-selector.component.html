@@ -1,0 +1,27 @@
+<div class="region-selector">
+  <h3>Choose Your Region:</h3>
+  <div class="regions-grid">
+    @for (region of regions(); track region.id) {
+      <div
+        class="region-card"
+        [class.selected]="selectedRegionId === region.id"
+        [class.disabled]="isRegionDisabled(region.id)"
+        (click)="selectRegion(region.id)"
+      >
+        <div class="region-icon">{{ region.icon }}</div>
+        <h4>{{ region.displayName }}</h4>
+        <p class="capacity">Up to {{ region.capacity }} guests per table</p>
+        <ul class="features">
+          @for (feature of region.features; track feature) {
+            <li>{{ feature }}</li>
+          }
+        </ul>
+        @if (isRegionDisabled(region.id)) {
+          <div class="disabled-overlay">
+            <p>{{ getDisabledReason(region.id) }}</p>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

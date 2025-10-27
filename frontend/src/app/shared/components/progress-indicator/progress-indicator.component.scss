@@ -1,0 +1,91 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.progress-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg 0;
+  gap: 0;
+
+  @include respond-to(mobile) {
+    padding: $spacing-md 0;
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+
+  .step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $background-color;
+    border: 2px solid $border-color;
+    @include flex-center;
+    font-weight: 600;
+    transition: all $transition-base;
+
+    @include respond-to(mobile) {
+      width: 32px;
+      height: 32px;
+      font-size: $font-size-sm;
+    }
+  }
+
+  .step-label {
+    font-size: $font-size-sm;
+    color: $text-light;
+    transition: color $transition-base;
+
+    @include respond-to(mobile) {
+      font-size: 12px;
+    }
+  }
+
+  &.active {
+    .step-circle {
+      background: $primary-color;
+      border-color: $primary-color;
+      color: white;
+    }
+
+    .step-label {
+      color: $primary-color;
+      font-weight: 600;
+    }
+  }
+
+  &.completed {
+    .step-circle {
+      background: $success-color;
+      border-color: $success-color;
+      color: white;
+    }
+
+    .step-label {
+      color: $success-color;
+    }
+  }
+}
+
+.connector {
+  width: 60px;
+  height: 2px;
+  background: $border-color;
+  margin: 0 $spacing-xs;
+  margin-bottom: 24px;
+  transition: background $transition-base;
+
+  @include respond-to(mobile) {
+    width: 30px;
+    margin: 0 4px;
+  }
+
+  &.completed {
+    background: $success-color;
+  }
+}

@@ -1,0 +1,43 @@
+@import '../../../../styles/variables';
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  background: lighten($error-color, 40%);
+  border: 1px solid $error-color;
+  border-radius: $radius-md;
+  color: darken($error-color, 20%);
+  margin-bottom: $spacing-lg;
+
+  .icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .text {
+    flex: 1;
+    font-size: $font-size-base;
+  }
+
+  .dismiss-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: darken($error-color, 20%);
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background $transition-base;
+
+    &:hover {
+      background: rgba($error-color, 0.1);
+    }
+  }
+}

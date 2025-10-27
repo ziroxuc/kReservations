@@ -1,0 +1,77 @@
+<div class="confirmation-container">
+  @if (isLoading()) {
+    <app-loader />
+  } @else if (error()) {
+    <app-error-message [message]="error()!" />
+    <button class="btn-primary" (click)="makeNewReservation()">
+      Make New Reservation
+    </button>
+  } @else if (reservation()) {
+    <div class="success-icon">✓</div>
+    <h1>Reservation Confirmed!</h1>
+    <p class="subtitle">Your table at Kafè is reserved</p>
+
+    <div class="confirmation-details">
+      <div class="detail-card">
+        <h3>Reservation Details</h3>
+        <div class="detail-row">
+          <span class="label">Confirmation ID:</span>
+          <span class="value">{{ reservation()!.id }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Date:</span>
+          <span class="value">{{ reservation()!.date }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Time:</span>
+          <span class="value">{{ reservation()!.timeSlot }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Region:</span>
+          <span class="value">{{ getRegionDisplayName(reservation()!.region) }}</span>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <h3>Guest Information</h3>
+        <div class="detail-row">
+          <span class="label">Name:</span>
+          <span class="value">{{ reservation()!.customerName }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Email:</span>
+          <span class="value">{{ reservation()!.email }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Phone:</span>
+          <span class="value">{{ reservation()!.phone }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Party Size:</span>
+          <span class="value">{{ reservation()!.partySize }} people</span>
+        </div>
+        @if (reservation()!.childrenCount > 0) {
+          <div class="detail-row">
+            <span class="label">Children:</span>
+            <span class="value">{{ reservation()!.childrenCount }}</span>
+          </div>
+        }
+        @if (reservation()!.hasBirthday) {
+          <div class="detail-row">
+            <span class="label">Birthday Celebration:</span>
+            <span class="value">{{ reservation()!.birthdayName || 'Yes' }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="confirmation-message">
+      <p>A confirmation email has been sent to <strong>{{ reservation()!.email }}</strong></p>
+      <p>Please arrive 10 minutes before your reservation time.</p>
+    </div>
+
+    <button class="btn-primary" (click)="makeNewReservation()">
+      Make Another Reservation
+    </button>
+  }
+</div>

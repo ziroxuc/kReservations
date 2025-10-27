@@ -1,0 +1,41 @@
+@import 'variables';
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: $mobile) { @content; }
+  }
+  @else if $breakpoint == tablet {
+    @media (max-width: $tablet) { @content; }
+  }
+  @else if $breakpoint == desktop {
+    @media (min-width: $desktop) { @content; }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin card {
+  background: white;
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
+  padding: $spacing-lg;
+}
+
+@mixin button-base {
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

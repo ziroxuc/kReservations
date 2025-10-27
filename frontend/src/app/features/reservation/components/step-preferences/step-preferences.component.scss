@@ -1,0 +1,62 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.step-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+
+  h2 {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    color: $text-color;
+  }
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  label {
+    cursor: pointer;
+    margin: 0;
+  }
+}
+
+.info-text {
+  font-size: $font-size-sm;
+  color: $secondary-color;
+  margin-top: $spacing-sm;
+  font-weight: 500;
+}
+
+.checking-status {
+  @include flex-center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  background: $background-color;
+  border-radius: $radius-md;
+  margin-top: $spacing-lg;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

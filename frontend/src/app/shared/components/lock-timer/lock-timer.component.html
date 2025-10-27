@@ -1,0 +1,11 @@
+@if (isActive()) {
+  <div class="lock-timer" [class.warning]="isWarning()">
+    <span class="icon">🔒</span>
+    <span class="text">
+      Reservation locked for: <strong>{{ formatTime(timeRemaining()) }}</strong>
+    </span>
+    @if (isWarning()) {
+      <span class="warning-text">⚠️ Hurry up!</span>
+    }
+  </div>
+}

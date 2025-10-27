@@ -1,0 +1,102 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.region-selector {
+  margin-bottom: $spacing-xl;
+
+  h3 {
+    margin-bottom: $spacing-md;
+    color: $text-color;
+  }
+}
+
+.regions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-md;
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.region-card {
+  @include card;
+  position: relative;
+  cursor: pointer;
+  transition: all $transition-base;
+  border: 2px solid transparent;
+
+  .region-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: $spacing-sm;
+  }
+
+  h4 {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-xs;
+    color: $text-color;
+    text-align: center;
+  }
+
+  .capacity {
+    font-size: $font-size-sm;
+    color: $text-light;
+    text-align: center;
+    margin-bottom: $spacing-md;
+  }
+
+  .features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      font-size: $font-size-sm;
+      padding: $spacing-xs 0;
+      color: $text-light;
+
+      &::before {
+        content: '✓ ';
+        color: $success-color;
+        margin-right: $spacing-xs;
+      }
+    }
+  }
+
+  &:hover:not(.disabled) {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+    border-color: $secondary-color;
+  }
+
+  &.selected {
+    border-color: $primary-color;
+    background: lighten($primary-color, 48%);
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .disabled-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(white, 0.9);
+      @include flex-center;
+      border-radius: $radius-md;
+
+      p {
+        text-align: center;
+        color: $error-color;
+        font-weight: 600;
+        padding: $spacing-md;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}

@@ -59,6 +59,13 @@ export class StepDateTimeComponent implements OnInit {
     this.stateService.updateReservationData({ date, timeSlot: undefined });
   }
 
+  onDateInput(event: Event): void {
+    const date = (event.target as HTMLInputElement).value;
+    if (date) {
+      this.stateService.updateReservationData({ date, timeSlot: undefined });
+    }
+  }
+
   selectTimeSlot(timeSlot: string): void {
     this.stateService.updateReservationData({ timeSlot });
   }

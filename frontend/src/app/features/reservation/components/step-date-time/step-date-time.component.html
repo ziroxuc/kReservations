@@ -19,6 +19,7 @@
       [max]="maxDate"
       [value]="selectedDate() || ''"
       (change)="onDateChange($event)"
+      (input)="onDateInput($event)"
     />
   </div>
 

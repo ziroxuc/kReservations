@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Production initialization script
- * Runs database migrations and seeds initial data if needed
+ * Local/Production initialization script
+ * Runs database push (local) or migrations (prod) and seeds initial data if needed
  */
 
 const { PrismaClient } = require('@prisma/client');
@@ -12,7 +12,6 @@ const { promisify } = require('util');
 const execAsync = promisify(exec);
 const prisma = new PrismaClient();
 
-// Region configurations matching seed.ts
 const REGIONS = [
   {
     name: 'MAIN_HALL',
@@ -52,15 +51,15 @@ const REGIONS = [
   },
 ];
 
-async function runMigrations() {
-  console.log('🔄 Running database migrations...');
+async function syncDatabaseSchema() {
+  console.log('🔄 Syncing database schema with "prisma db push"...');
   try {
-    const { stdout, stderr } = await execAsync('npx prisma migrate deploy');
+    const { stdout, stderr } = await execAsync('npx prisma db push');
     if (stdout) console.log(stdout);
     if (stderr && !stderr.includes('warnings')) console.error(stderr);
-    console.log('✅ Migrations completed successfully');
+    console.log('✅ Database schema synced successfully');
   } catch (error) {
-    console.error('❌ Error running migrations:', error.message);
+    console.error('❌ Error syncing database schema:', error.message);
     throw error;
   }
 }
@@ -107,15 +106,10 @@ async function main() {
   try {
     console.log('🏁 Starting Kafè Backend initialization...\n');
 
-    // Step 1: Run migrations
-    await runMigrations();
-    console.log('');
+    await syncDatabaseSchema();
 
-    // Step 2: Check and seed database
     await checkAndSeedDatabase();
-    console.log('');
 
-    // Step 3: Start the application
     await startApplication();
 
   } catch (error) {
